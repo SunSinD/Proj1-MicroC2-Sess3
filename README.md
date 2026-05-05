@@ -1,84 +1,60 @@
-<a id="readme-top"></a>
+# Proj1 MicroC2 Sess3 - Matrix Interface Tester
 
-[![Unlicense License][license-shield]][license-url]
+This repository contains my first school project for **243-33A-MO: Microcontroleur 2**. The project is a PlatformIO/Arduino test tool for the course matrix interface, built for an Arduino Mega 2560 and a 64x32 RGB LED matrix.
 
-<br />
-<div align="center">
-  <a href="https://github.com/SunSinD/Projet1_Singh_Sunpreet?tab=readme-ov-file#readme-top">
-    <img src="https://i.imgur.com/Eqy6dM9.png" alt="Image" width="600" height="800">
-  </a>
+The program reads the board inputs, shows their state on the matrix, sends button events through the serial port, and includes a few animation modes to validate the display.
 
-  <h3 align="center">Projet 1</h4>
+## Features
 
-  <p align="center">
-    de 10/28/2025 à 11/13/2025, Projet 1 pour 243-33A-MO : Microcontrôleur 2
-    <br />
-  </p>
-</div>
+- Live display of potentiometer, photoresistor, and rotary encoder values.
+- Matrix visualization for the seven push buttons: up, down, left, right, A, B, and C.
+- Interrupt-based rotary encoder reading.
+- RGB LED testing through the A, B, and C buttons.
+- Serial output for button press events.
+- Multiple matrix modes:
+  - `Left + Down + B` toggles the color sweep animation.
+  - `Up + Down + C` toggles the custom `Projet 1` animation.
 
-## But du programme
+## Hardware And Tools
 
-[![Product Name Screen Shot][product-screenshot]](https://www.collegesinstitutes.ca/wp-content/uploads/2022/10/montmorency.png)
+- Arduino Mega 2560
+- MOMO RGB Matrix / 64x32 RGB LED matrix
+- Push buttons, rotary encoder, potentiometer, photoresistor, and RGB LEDs
+- PlatformIO
+- Arduino framework
+- C++
 
-Le but principal de ce projet est de développer un programme qui servira d’outil de test unifié et portable pour tester l’ensemble de fonctionnalité de l’interface matrice. Cet outil servira aux techniciens du département pour deux fonctions critiques :
-1.
-Diagnostic de pannes pour la réparation : Le système doit permettre aux techniciens d'isoler rapidement les composants défectueux sur les cartes électroniques en réparation.
-2.
-Validation post-assemblage et contrôle qualité : Après l'assemblage d'un appareil, cet outil servira de banc d'essai rapide pour garantir que tous les composants fonctionnent selon les spécifications.
+## Project Structure
 
-<p align="right">(<a href="#readme-top"> Retour en Haut </a>)</p>
+```text
+.
+|-- platformio.ini          # PlatformIO board and framework configuration
+|-- src/main.cpp            # Main program logic
+|-- src/bits_manip.cpp      # Bit manipulation helper implementation
+|-- include/bits_manip.h    # Bit manipulation helper declarations
+|-- lib/MOMO_RGB_Matrix/    # Local RGB matrix library
+`-- README.md
+```
 
+## Build And Upload
 
+Install PlatformIO, connect the Arduino Mega 2560, then run:
 
-### Fait Avec
+```bash
+pio run
+pio run -t upload
+```
 
-* [![C++.io]][C++-url]
+To view serial output:
 
-<p align="right">(<a href="#readme-top"> Retour en Haut </a>)</p>
+```bash
+pio device monitor
+```
 
-## Tests à effectuer
+## Notes
 
-Voici les différents tests qui devront être effectués pour s’assurer du bon fonctionnement de la matrice. Tous les détails non spécifiés dans le cahier de charge devront être décidés par le programmeur.
-•
-Test de la matrice à DEL : En parcourant les différents états fonctionnels (statique, animation, etc.), le technicien peut s'assurer que chaque pixel de la matrice est fonctionnel, que l'affichage est clair et qu’aucun problème n’est détecté dans la matrice;
-•
-Test des entrées boutons : Les 7 boutons-poussoirs doivent valider la connectivité et la bonne lecture des entrées numériques. L’état de chaque bouton devra être affiché sur la matrice;
-•
-Le test du potentiomètre et la photocellule doivent valider les entrées analogiques, avec une confirmation visuelle sur la matrice en affichant la valeur numérique des composants;
-•
-L'encodeur doit confirmer la lecture des signaux en quadrature en affichant sa valeur sur la matrice de plus le bouton poussoir de l’encodeur doit être également testé;
-•
-Test des DELs RVB : L’allumage et le changement de couleur des DELs doit pouvoir être testé à l’aide d’appuie sur des boutons;
-•
-Documentation de test : L'écran LCD agit comme une interface de retour d'information essentielle, fournissant des valeurs numériques brutes et des états (ex.: la valeur de l'ADC du potentiomètre) qui peuvent être vus par le technicien pour le contrôle qualité;
-•
-L’ensemble des états doivent, en plus d’être affichés sur la matrice, être transmis par le port série;
-•
-Une combinaison de touche devra faire basculer la matrice en mode animation ou en mode affichage de l’état des entrées. Attention de bien spécifier la combinaison de touche dans les commentaires du programme.
-
-### Évaluation
-
-Chaque partie du projet sera évaluée sur sa fonctionnalité ET sur les respects des normes de programmation. Voir la grille d’évaluation disponible sur Teams.
-
-### Remise du projet
-
-Pour la remise du projet, vous devez remettre votre code commenté à deux endroits différents :
-1.
-Teams : vous devez remettre l’ensemble des fichiers du projet compressé en fichier zip sur Teams;
-2.
-GitHub : vous devez ajouter le compte GitHub du professeur (gbeaulieuMontmo) au collaborateur autorisé de votre dépôt privé (private repositories). Voir le fichier VisualStudioCode_GitHub.pdf disponible dans le répertoire procédures des fichiers du cours pour plus d’information. Vous devrez également créer un Readme pour votre dépôt.
-
-<p align="right">(<a href="#readme-top"> Retour en Haut </a>)</p>
-
+This was created as a school project, so the code is focused on demonstrating the required microcontroller concepts: digital inputs, analog inputs, interrupts, serial communication, RGB LED control, and matrix drawing.
 
 ## License
 
-Distribué sous licence Unlicense. Voir `LICENSE.txt` pour plus d'informations.
-
-<p align="right">(<a href="#readme-top"> Retour en Haut </a>)</p>
-
-[product-screenshot]: https://www.collegesinstitutes.ca/wp-content/uploads/2022/10/montmorency.png
-[C++.io]: https://img.shields.io/badge/C++-00599C?style=flat-square&logo=C%2B%2B&logoColor=white
-[C++-url]: https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/ISO_C%2B%2B_Logo.svg/1067px-ISO_C%2B%2B_Logo.svg.png
-[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
-[license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
+Released under the Unlicense. See [LICENSE](LICENSE) for details.
